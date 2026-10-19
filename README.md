@@ -129,8 +129,8 @@ that row. Intervals are 95 %, resampling authors.
 | on the same 2,000 test posts | macro-F1 | QWK | accuracy |
 |---|---:|---:|---:|
 | baseline | 0.5496 [0.526, 0.572] | 0.4592 | 0.5575 |
-| Claude Sonnet 5.5, zero-shot | 0.5167 [0.491, 0.541] | 0.3787 | 0.6625 |
-| Claude Opus 5.5, zero-shot | 0.6272 [0.603, 0.650] | 0.5420 | 0.6870 |
+| Claude Sonnet 5.5, zero-shot, with the author's last five posts | 0.5167 [0.491, 0.541] | 0.3787 | 0.6625 |
+| Claude Opus 5.5, zero-shot, with the author's last five posts | 0.6272 [0.603, 0.650] | 0.5420 | 0.6870 |
 
 Each post was a fresh `claude -p` call (Claude Code, effort `low`, no tools), so no
 post saw another. The prompt gave the author's usual number of reactions, their five
