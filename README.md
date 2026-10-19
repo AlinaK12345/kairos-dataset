@@ -118,6 +118,34 @@ the post was crawled. It never reads the text and never looks at the media.
 
 The bar to beat is **0.5410 macro-F1**. The words and the media are yours.
 
+### For reference: Claude, zero-shot
+
+How far does a frontier model get without any training? In October 2026 Claude Opus 5.5
+and Claude Sonnet 5.5 each answered a uniform random sample of **2,000 of the 17,623
+test posts** (630 of the 824 test authors). These numbers hold for those 2,000 posts
+only: the baseline scores 0.5496 on them, not 0.5410, so read the Claude rows against
+that row. Intervals are 95 %, resampling authors.
+
+| on the same 2,000 test posts | macro-F1 | QWK | accuracy |
+|---|---:|---:|---:|
+| baseline | 0.5496 [0.526, 0.572] | 0.4592 | 0.5575 |
+| Claude Sonnet 5.5, zero-shot | 0.5167 [0.491, 0.541] | 0.3787 | 0.6625 |
+| Claude Opus 5.5, zero-shot | 0.6272 [0.603, 0.650] | 0.5420 | 0.6870 |
+
+Each post was a fresh `claude -p` call (Claude Code, effort `low`, no tools), so no
+post saw another. The prompt gave the author's usual number of reactions, their five
+most recent earlier posts (the first 200 characters, the reactions and the first
+picture of each), the new post's text (up to 1,000 characters) and up to four of its
+pictures, a video by its poster frame, and asked whether the post would get clearly
+fewer reactions than usual (under about ×0.58), about the usual, or clearly more (over
+about ×3.2). The class is the letter the model chose; nothing was tuned. Sonnet seldom
+calls an extreme class (7 % and 9 % of its answers, against about 20 % each in the
+label), which is why its accuracy is high and its macro-F1 low.
+
+These runs sent the posts' text and pictures to Anthropic, by the dataset authors'
+decision for this reference row. It does not change the [rules of use](#rules-of-use):
+your copy of the media stays inside your course and does not go to an external service.
+
 ## Evaluate your model
 
 Write one row per test post with its `author`, `post` and predicted `label`
